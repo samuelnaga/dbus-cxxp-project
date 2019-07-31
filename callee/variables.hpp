@@ -12,7 +12,7 @@ struct sBlock{
 
 
 struct sResult {
-    static constexpr const char* DBUS_SIGNATURE = "(yr)";
+    static constexpr const char* DBUS_SIGNATURE = "(ya)";
     uint8_t res;
     std::vector<sBlock> blocks;
 };
