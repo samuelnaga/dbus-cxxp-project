@@ -16,7 +16,7 @@ int main()
     object->create_method<void>("dev.example.example1", "stop", sigc::ptr_fun(stop) );
 
     object->create_method<sResult, std::vector<uint8_t> >("dev.example.example2", "read", sigc::ptr_fun(doRead) );
-    object->create_method<ByteArray, std::vector<sBlock> >("dev.example.example2", "write", sigc::ptr_fun(doWrite));
+    object->create_method<std::vector<uint8_t>, std::vector<sBlock> >("dev.example.example2", "write", sigc::ptr_fun(doWrite));
 
     sleep(10);
 
