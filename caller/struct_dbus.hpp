@@ -3,9 +3,9 @@
 #include <dbus-cxx/types.h>
 
 namespace DBus {
-  inline std::string signature(struct sBlock){ return sBlock::DBUS_SIGNATURE; }
-  inline std::string signature(struct sResult ){ return sResult ::DBUS_SIGNATURE;    }
-  inline std::string signature(std::vector<sBlock>) { return std::string(DBUS_TYPE_ARRAY_AS_STRING); }
+  inline std::string signature(struct sBlock){ return sBlock::BLOCK_SIGNATURE; }
+  inline std::string signature(struct sResult ){ return sResult::RESULT_SIGNATURE;    }
+  inline std::string signature(std::vector<sBlock>) { return BLOCK_ARRAY_SIGNATURE; }
 
   inline std::string type_string(const struct sBlock&) { return "Struct"; }
   inline std::string type_string(const struct sResult&)    { return "Struct"; }
