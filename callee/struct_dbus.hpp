@@ -6,7 +6,7 @@
 namespace DBus {
   inline std::string signature(struct sBlock){ return sBlock::BLOCK_SIGNATURE; }
   inline std::string signature(struct sResult ){ return sResult::RESULT_SIGNATURE; }
-  inline std::string signature(std::vector<sBlock>) { return BLOCK_ARRAY_SIGNATURE; }
+  // inline std::string signature(std::vector<sBlock>) { return BLOCK_ARRAY_SIGNATURE; }
 
   inline std::string type_string(const struct sBlock&) { return "Struct"; }
   inline std::string type_string(const struct sResult&)    { return "Struct"; }
