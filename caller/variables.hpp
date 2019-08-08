@@ -17,4 +17,4 @@ struct sResult {
     std::vector<sBlock> blocks;
 };
 
-// static constexpr const char* BLOCK_ARRAY_SIGNATURE = "(a(yay))";
+static constexpr const char* BLOCK_ARRAY_SIGNATURE = "a(yay)";
