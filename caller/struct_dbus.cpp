@@ -4,8 +4,9 @@
 DBus::MessageIterator& operator>>(DBus::MessageIterator& i, struct sBlock& t)
 {
     DBus::MessageIterator subiter = i.recurse();
-    subiter >> t.data;
     subiter >> t.block;
+    subiter >> t.data;
+
     return i;
 }
 
@@ -13,8 +14,8 @@ DBus::MessageIterator& operator>>(DBus::MessageIterator& i, struct sBlock& t)
 DBus::MessageAppendIterator& operator<<(DBus::MessageAppendIterator& i, const struct sBlock& t)
 {
     i.open_container(DBus::CONTAINER_STRUCT, std::string());
-    i.sub_iterator()->append(t.data);
     i.sub_iterator()->append(t.block);
+    i.sub_iterator()->append(t.data);
     i.close_container();
     return i;
 }
@@ -38,33 +39,27 @@ DBus::MessageAppendIterator& operator<<(DBus::MessageAppendIterator& i, const st
     return i;
 }
 
-
 DBus::MessageIterator& operator>>(DBus::MessageIterator& i, std::vector<sBlock>& t)
 {
-    DBus::MessageIterator subiter = i.recurse();
-    for (size_t j=0; j < t.size(); ++j)
-    {
-        DBus::MessageIterator subiter2 = subiter.recurse();
-        subiter2 >> t[j].data;
-        subiter2 >> t[j].block;
-    }
+    t = i.get_array_complex<sBlock>();
     return i;
 }
 
 
 DBus::MessageAppendIterator& operator<<(DBus::MessageAppendIterator& i, const std::vector<sBlock>& t)
 {
-    i.open_container(DBus::CONTAINER_ARRAY, std::string());
+    i.open_container(DBus::CONTAINER_ARRAY, BLOCK_SIGNATURE);
 
-    for (size_t j=0; j < t.size(); ++j)
+    for (sBlock blk : t)
     {
         i.sub_iterator()->open_container(DBus::CONTAINER_STRUCT, std::string());
-        i.sub_iterator()->sub_iterator()->append(t[j].data);
-        i.sub_iterator()->sub_iterator()->append(t[j].block);
+        i.sub_iterator()->sub_iterator()->append(blk.block);
+        i.sub_iterator()->sub_iterator()->append(blk.data);
         i.sub_iterator()->close_container();
     }
-
+    
     i.close_container();
+    
     return i;
 }
 
