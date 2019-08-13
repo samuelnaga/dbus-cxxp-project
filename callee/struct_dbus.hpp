@@ -4,8 +4,8 @@
 #include <dbus-cxx/types.h>
 
 namespace DBus {
-    inline std::string signature(struct sBlock){ return sBlock::BLOCK_SIGNATURE; }
-    inline std::string signature(struct sResult ){ return sResult::RESULT_SIGNATURE; }
+    inline std::string signature(struct sBlock){ return BLOCK_SIGNATURE; }
+    inline std::string signature(struct sResult ){ return RESULT_SIGNATURE; }
     inline std::string signature(std::vector<sBlock>) { return BLOCK_ARRAY_SIGNATURE; }
 
     inline std::string type_string(const struct sBlock&) { return "Struct"; }
