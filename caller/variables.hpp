@@ -3,16 +3,17 @@
 #include <vector>
 #include <stdint.h>
 
+static constexpr const char* BLOCK_SIGNATURE = "(yay)";
 
 struct sBlock{
-    static constexpr const char* BLOCK_SIGNATURE = "(yay)";
+
     uint8_t block;
     std::vector<uint8_t> data;
 };
 
+static constexpr const char* RESULT_SIGNATURE = "(ya(yay))";
 
 struct sResult {
-    static constexpr const char* RESULT_SIGNATURE = "(ya(yay))";
     uint8_t res;
     std::vector<sBlock> blocks;
 };
